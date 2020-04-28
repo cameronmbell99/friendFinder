@@ -1,6 +1,6 @@
 //Dependencies
 var express = require("express");
-var path = require("");
+var path = require("path");
 
 // Setting up Express App
 var app = express();
@@ -20,11 +20,11 @@ var tables = [{
 
 //routes
 app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "home.html"));
+    res.sendFile(path.join(__dirname, "/app/public/home.html"));
 });
 
 app.get("/survey", function(req, res) {
-    res.sendFile(path.join(__dirname, "survey.html"));
+    res.sendFile(path.join(__dirname, "/app/public/survey.html"));
 });
 
 //display arrays
