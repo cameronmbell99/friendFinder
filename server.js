@@ -5,6 +5,7 @@ var friends = require("./app/data/friends.js")
 
 // Setting up Express App
 var app = express();
+var PORT = process.env.PORT;
 
 // Handles Data parsing
 app.use(express.urlencoded({ extended: true }));
