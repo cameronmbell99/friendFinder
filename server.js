@@ -1,31 +1,25 @@
-//Dependencies
+// Dependencies
 var express = require("express");
 var path = require("path");
-var friends = require("./app/data/friends.js")
+var routes = require("./app/routing/apiRoutes");
+var html = require("./app/routing/htmlRoutes");
 
 // Setting up Express App
 var app = express();
-var PORT = process.env.PORT;
+var PORT = process.env.PORT || 3000;
 
 // Handles Data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//routes
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "/app/public/home.html"));
-});
+// Switching html pages
+require("./app/routing/apiRoutes.js")(app);
 
-app.get("/survey", function(req, res) {
-    res.sendFile(path.join(__dirname, "/app/public/survey.html"));
-});
+// Getting/Setting friends obj items
+require("./app/routing/htmlRoutes.js")(app, path);
 
-//display arrays
-app.get("/api/friends", function(req, res) {
-    return res.json(friends);
-});
 
-//starts the server
+// starts the server
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
 });
